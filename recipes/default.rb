@@ -16,23 +16,7 @@ git "/home/ubuntu/pumpkin" do
   action :sync
 end
 
-python_pip "pyinotify" do
-  action :install
+execute "install python pumpkin" do
+  command "sudo python setup.py install"
+  cwd "/home/ubuntu/pumpkin"
 end
-
-python_pip "networkx" do
-  action :install
-end
-python_pip "pyzmq" do
-  action :install
-end
-python_pip "pyftpdlib" do
-  action :install
-end
-python_pip "tftpy" do
-  action :install
-end
-python_pip "pika" do
-  action :install
-end
-
