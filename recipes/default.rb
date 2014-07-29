@@ -6,7 +6,7 @@
 #
 # 
 #
-default_user = "#{node['current_user']}"
+default_user = "1000"
 home_path = "/home/"+default_user
 
 template home_path+"/temp_UvA" do
