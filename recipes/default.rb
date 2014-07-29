@@ -19,11 +19,11 @@ git home_path+"/pumpkin" do
   action :sync
 end
 
-directory home_path+"/pumpkin" do
-  owner default_user
-  group default_user
-  mode 00755
-end
+#directory home_path+"/pumpkin" do
+#  owner default_user
+#  group default_user
+#  mode 00755
+#end
 
 execute "install python pumpkin" do
   command "sudo python setup.py install"
