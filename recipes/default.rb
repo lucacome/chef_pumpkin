@@ -37,10 +37,8 @@ template "~/nltk_data/classifiers/movie_reviews_NaiveBayes.pickle" do
   source "movie_reviews_NaiveBayes.pickle.erb"
 end
 
-git "~/pumpkin" do
-  repository "https://gist.github.com/919bfdc71f118feff911.git"
-  reference "master"
-  action :sync
+template "~/pumpkin/pumpkin.cfg" do
+  source "pumpkin.cfg.erb"
 end
 
 
