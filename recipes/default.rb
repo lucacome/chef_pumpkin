@@ -6,39 +6,73 @@
 #
 # 
 #
-template '/home/ubuntu/temp_UvA' do
+default_user = "#{node['current_user']}"
+home_path = "/home/"+default_user
+
+template home_path+"/temp_UvA" do
   source 'temp_UvA.erb'
 end
 
-git "~/pumpkin" do
+git home_path+"/pumpkin" do
   repository "git://github.com/recap/pumpkin.git"
   reference "master"
   action :sync
+  user default_user
 end
 
 execute "install python pumpkin" do
   command "sudo python setup.py install"
-  cwd "~/pumpkin"
+  cwd home_path+"/pumpkin"
 end
 
-template "~/pmk-seeds/collector.py" do
+directory home_path+"/pmk-seeds" do
+  owner default_user
+  group default_user
+  mode 00644
+  action :create
+end
+
+template home_path+"/pmk-seeds/collector.py" do
   source "collector.py.erb"
+  owner default_user
+  group default_user
+  mode 00644
 end
 
-template "~/pmk-seeds/filter.py" do
+template home_path+"/pmk-seeds/filter.py" do
   source "filter.py.erb"
+  owner default_user
+  group default_user
+  mode 00644
 end
 
-template "~/pmk-seeds/tweetinject.py" do
+template home_path+"/pmk-seeds/tweetinject.py" do
   source "tweetinject.py.erb"
+  owner default_user
+  group default_user
+  mode 00644
 end
 
-template "~/nltk_data/classifiers/movie_reviews_NaiveBayes.pickle" do
+%w[ /nltk_data /nltk_data/classifiers ].each do |path|
+  directory home_path+path do
+    owner default_user
+    group default_user
+    mode 00644
+    action :create
+  end
+end
+
+template home_path+"/nltk_data/classifiers/movie_reviews_NaiveBayes.pickle" do
   source "movie_reviews_NaiveBayes.pickle.erb"
+  owner default_user
+  group default_user
+  mode 00644
 end
 
-template "~/pumpkin/pumpkin.cfg" do
+template home_path+"/pumpkin/pumpkin.cfg" do
   source "pumpkin.cfg.erb"
+  owner default_user
+  group default_user
+  mode 00644
 end
-
 
