@@ -17,7 +17,12 @@ git home_path+"/pumpkin" do
   repository "git://github.com/recap/pumpkin.git"
   reference "master"
   action :sync
-  user default_user
+end
+
+directory home_path+"/pumpkin" do
+  owner default_user
+  group default_user
+  mode 00644
 end
 
 execute "install python pumpkin" do
