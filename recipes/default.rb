@@ -6,7 +6,7 @@
 #
 # 
 #
-default_user = "1000"
+default_user = "ubuntu"
 home_path = "/home/"+default_user
 
 template home_path+"/temp_UvA" do
