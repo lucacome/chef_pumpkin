@@ -9,9 +9,9 @@
 default_user = "ubuntu"
 home_path = "/home/"+default_user
 
-template home_path+"/temp_UvA" do
-  source 'temp_UvA.erb'
-end
+#template home_path+"/temp_UvA" do
+#  source 'temp_UvA.erb'
+#end
 
 git home_path+"/pumpkin" do
   repository "git://github.com/recap/pumpkin.git"
@@ -31,6 +31,13 @@ execute "install python pumpkin" do
 end
 
 directory home_path+"/pmk-seeds" do
+  owner default_user
+  group default_user
+  mode 00755
+  action :create
+end
+
+directory home_path+"/tweets" do
   owner default_user
   group default_user
   mode 00755
